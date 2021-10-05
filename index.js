@@ -299,6 +299,11 @@ class ModbusAccessory {
             if ('mask' in modbusMap) {
               val = val & modbusMap.mask;
             }
+            
+            if('writeCorrection' in modbusMap){
+             val = doCorrection(val, modbusMap.writeCorrection);
+           } 
+              
             this.platform.writeModbus(modbusType, modbusAdd, val);
             callback();
           });
